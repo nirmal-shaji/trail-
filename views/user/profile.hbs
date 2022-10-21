@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <!-- ...:::: Start Breadcrumb Section:::... -->
+  <div class="breadcrumb-section breadcrumb-bg-color--golden">
+    <div class="breadcrumb-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="breadcrumb-title">My Account</h3>
+            <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+              <nav aria-label="breadcrumb">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="shop-grid-sidebar-left.html">Shop</a></li>
+                  <li class="active" aria-current="page">My Account</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- ...:::: End Breadcrumb Section:::... -->
+
+
+
+  <!-- ========================= SECTION CONTENT ========================= -->
+  <div class="m-5">
+    <section class="section-conten padding-y bg">
+
+      <div class="container">
+        <div class="row">
+          <aside class="col-md-3">
+            <!--   SIDEBAR   -->
+            <ul class="list-group">
+              <a class="list-group-item active" href="#" style="background-color: #b19361; border-color: #fff;"
+                onclick="myaccount('changer3');">My Account </a>
+              <a class="list-group-item" style="color: black;" href="/wishlistData"> My wishlist </a>
+              <a class="list-group-item" style="color: black;" href="#" onclick="addressdiv('changer2');"> Manage
+                address </a>
+              <a class="list-group-item" style="color: black;" href="#" onclick="ordersdiv('changer4');"> Manage orders
+              </a>
+              <a class="list-group-item" style="color: black;" href="#" onclick="changepassword('changer5');"> Change
+                password </a>
+
+            </ul>
+            <br>
+            <a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log
+                out</span> </a>
+            <!--   SIDEBAR .//END   -->
+          </aside>
+          <div class="col-lg-8 ">
+            <div id="changer">
+              <button type="button" class="btn btn-light mb-3 "
+                style="color: #fff; background-color: #b19361; text-decoration: none; " data-bs-toggle="modal"
+                data-bs-target="#userDetails" data-bs-whatever="@getbootstrap">Edit</button>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row ">
+                    <div class="col-sm-3 ">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.first_name}} {{userData.last_name}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.email}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.phone_number}}</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            {{!-- //------------------------manage--orders--------------------------------------------------- --}}
+            <div id="changer4" style="display: none;">
+
+
+
+              <div class="container">
+                <table class="table  " id="product-table">
+                  <thead style="background-color: #b19362; color: white;">
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                      {{!-- <th scope="col">Total</th> --}}
+                      <th scope="col">Status</th>
+                      {{!-- <th scope="col"></th> --}}
+                      <th scope="col">Cancel</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each orderDatas}}
+                    <tr>
+                      <td scope="row">{{inc1 @index}}</td>
+                       <td>
+                        {{#products}}
+                        <ul>
+                          <li><img src="/product_uploads/{{productId.imagepath.[0]}}" style="width:20px;height:15px;"></li>
+
+                        </ul> {{/products}}</td>
+                      </td>
+                      <td scope="row">{{#products}}
+                        <ul>
+                          <li>&#10003; {{productId.name}}</li>
+
+                        </ul> {{/products}}
+                      </td>
+
+                      <td scope="row">{{#products}}
+                        <ul>
+                          <li>{{productId.amount}}</li>
+
+                        </ul> {{/products}}</td>
+                      <td scope="row">
+                        {{#products}}
+                        <ul>
+                          <li>{{quantity}}</li>
+
+                        </ul> {{/products}}
+                      </td>
+                      {{!-- <td scope="row">gfgf</td> --}}
+                      <td id="{{_id}}" scope="row" >{{orderStatus}}</td>
+                      
+                      <td scope="row">
+                        <a href="#"> <button class="btn btn-outline-danger btn-sm"
+                          onclick="cancelOrder('{{_id}}','{{orderStatus}}');">Cancel?</button></a>
+                      </td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+
+
+            </div>
+
+            {{!-- //------------------------manage--address--------------------------------------------------- --}}
+            <div id="changer2" style="display: none;">
+              <button type="button" class="btn btn-light mb-3 "
+                style="color: #fff; background-color: #b19361; text-decoration: none; " data-bs-toggle="modal"
+                data-bs-target="#addressDetails" data-bs-whatever="@getbootstrap">Create</button>
+
+              <div class="card ">
+                <div class="card-body row " id="each">
+                  {{#each addressData}}
+                  <div class="col-lg-6 pb-4">
+                    <div class="card bg-light  ">
+                      <div class="card-header">Address</div>
+                      <div class="card-body ">
+                        <h5 class="card-title"></h5>
+                        <h6 class="card-text">{{this.firstName}}
+                          {{this.lastName}},<br>{{this.address}},<br>{{this.city}},<br>{{this.state}},<br>{{this.pincode}},<br>{{this.landMark}},<br>{{this.phoneNumber}},<br>{{this.alternatePhoneNumber}}.
+                          </p>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#editAddressDetails"
+                            data-bs-whatever="@getbootstrap" onclick="editAddresses('{{this._id}}');"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                              <path
+                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                              <path fill-rule="evenodd"
+                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                            </svg></a> &nbsp; &nbsp;
+                          <a href="/delete_address/{{this._id}}"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                              height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                              <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                              <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                            </svg></a>
+
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+
+                </div>
+              </div>
+            </div>
+            {{!--
+            ------------------------------------user-profile--------------------------------------------------------------
+            --}}
+            <div id="changer3" style="display: none;">
+              <button type="button" class="btn btn-light mb-3 "
+                style="color: #fff; background-color: #b19361; text-decoration: none; " data-bs-toggle="modal"
+                data-bs-target="#userDetails" data-bs-whatever="@getbootstrap">Edit</button>
+
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row ">
+                    <div class="col-sm-3 ">
+                      <p class="mb-0">Full Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.first_name}} {{userData.last_name}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.email}}</p>
+                    </div>
+                  </div>
+                  <hr style="background-color: black;">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{userData.phone_number}}</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{!-- -------------------------------------manage orders----------------------------------------------------------- --}}
+       
+            {{!-----------------------------------------change-password-----------------------------------------------------------------------}}
+            <div id="changer5" style="display: none;">
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Old Password</label>
+                  <input id="oldPassword" type="password" class="form-control"  aria-describedby="emailHelp">
+                  {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  --}}
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">New Password</label>
+                  <input type="password" class="form-control" id="newPassword">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                  <input id="confirmPassword" type="password" class="form-control">
+                </div>
+                {{!-- <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> --}}
+                <button type="button" class="btn "
+                  style="color: #fff; background-color: #b19361; text-decoration: none; " onclick="changePassword();">Submit</button>
+              </form>
+            </div>
+            {{!--
+            --------------------------------------------------end------------------------------------------------------
+            --}}
+          </div>
+
+          <!-- row.// -->
+        </div>
+
+        <!-- ========================= MODAL USERDETAILS // ========================= -->
+        <div class="modal fade modal-dialog modal-dialog-centered modal-dialog-scrollable" id="userDetails"
+          tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/editUserData" method="post">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">First Name:</label>
+                    <input name="first_name" type="text" class="form-control"
+                      id="recipient-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Last Name:</label>
+                    <input name="last_name"  type="text" class="form-control"
+                      id="recipient-name">
+                  </div>
+                  {{!-- <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Email:</label>
+                    <input name="email" type="text" class="form-control" id="recipient-name" disabled>
+                  </div> --}}
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Mobile:</label>
+                    <input name="phone_number"  type="text" class="form-control"
+                      id="recipient-name">
+                  </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update Details</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================= MODAL Add ADDRESSDETAILS // ========================= -->
+        <div class="modal fade" id="addressDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Address Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="post" id="addAddress">
+
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label>First Name <span>*</span></label>
+                        <input type="text" id="firstName" value="{{address.[0].firstName}}" name="firstName" required/>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label>Last Name <span>*</span></label>
+                        <input type="text" id="lastName" value="{{address.[0].lastName}}" name="lastName" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Phone number<span>*</span></label>
+                        <input type="text" id="phoneNumber" value="{{address.[0].phoneNumber}}" name="phoneNumber" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Alterante phone number</label>
+                        <input type="text" id="alternatePhoneNumber" value="{{address.[0].alternatePhoneNumber}}"
+                          name="alternatePhoneNumber" />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Type <span>*</span></label>
+                        <select class="country_option nice-select wide" name="type" id="type">
+                          
+                          <option value="home">Home</option>
+                          <option value="office">Office</option>
+
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Street address <span>*</span></label>
+                        <input id="address" name="address" value="{{address.[0].address}}"
+                          placeholder="House number and street name" type="text" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <input placeholder="Apartment, suite, unit etc. (optional)" type="text" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Town / City <span>*</span></label>
+                        <input id="city" type="text" value="{{address.[0].city}}" name="city" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>State <span>*</span></label>
+                        <input id="state" value="{{address.[0].state}}" type="text" name="state" required />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label>Land Mark<span></span></label>
+                        <input id="landMark" value="{{address.[0].landMark}}" type="text" name="landMark" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label> Pincode <span>*</span></label>
+                        <input id="pincode" name="pincode" type="text" value="{{address.[0].pincode}}" required/>
+                      </div>
+                    </div>
+
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update Details</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        {{!--
+        --------------------------------------------------------------------------------------------------------- --}}
+
+
+        <!-- ========================= MODAL EDIT ADDRESSDETAILS // ========================= -->
+        <div class="modal fade" id="editAddressDetails" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Address Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="post" id="form1">
+
+
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label>First Name <span>*</span></label>
+                        <input type="text" id="firstName1" value="{{address.[0].firstName}}" name="firstName" required/>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label>Last Name <span>*</span></label>
+                        <input type="text" id="lastName1" value="{{address.[0].lastName}}" name="lastName" required />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Phone number<span>*</span></label>
+                        <input type="text" id="phoneNumber1" value="{{address.[0].phoneNumber}}" name="phoneNumber" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Alterante phone number</label>
+                        <input type="text" id="alternatePhoneNumber1" value="{{address.[0].alternatePhoneNumber}}"
+                          name="alternatePhoneNumber" />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Type <span>*</span></label>
+                        <select class="country_option nice-select wide" name="type" id="type1">
+                          
+                          <option value="home">Home</option>
+                          <option value="office">Office</option>
+
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Street address <span>*</span></label>
+                        <input id="address1" name="address1" value=" "
+                          placeholder="House number and street name" type="text" required/>
+                      </div>
+                    </div>
+                    {{!-- <div class="col-12">
+                      <div class="default-form-box">
+                        <input placeholder="Apartment, suite, unit etc. (optional)" type="text" />
+                      </div>
+                    </div> --}}
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>Town / City <span>*</span></label>
+                        <input id="city1" type="text" value=" " name="city" required/>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="default-form-box">
+                        <label>State <span>*</span></label>
+                        <input id="state1" value=" " type="text" name="state" required/>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label>Land Mark<span>*</span></label>
+                        <input id="landMark1" value=" " type="text" name="landMark" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="default-form-box">
+                        <label> Pincode <span>*</span></label>
+                        <input id="pincode1" type="text" value=" " required/>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update Details</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{!--
+        ------------------------------------------------------------------------------------------------------------
+        --}}
+    </section>
+  </div>
+  <!-- ========================= SECTION CONTENT END// ========================= -->
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="section-footer border-top padding-y">
+    <div class="container">
+      <p class="float-md-right">
+        &copy Copyright 2019 All rights reserved
+      </p>
+      <p>
+        <a href="#">Terms and conditions</a>
+      </p>
+    </div><!-- //container -->
+  </footer>
+  <!-- ========================= FOOTER END // ========================= -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/bootstrap/js/popper.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/select2/select2.min.js"></script>
+  <script>
+    $(".js-select2").each(function () {
+      $(this).select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $(this).next('.dropDownSelect2')
+      });
+    })
+  </script>
+  <!--===============================================================================================-->
+  <script src="/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <script>
+    $('.js-pscroll').each(function () {
+      $(this).css('position', 'relative');
+      $(this).css('overflow', 'hidden');
+      var ps = new PerfectScrollbar(this, {
+        wheelSpeed: 1,
+        scrollingThreshold: 1000,
+        wheelPropagation: false,
+      });
+
+      $(window).on('resize', function () {
+        ps.update();
+      })
+    });
+  </script>
+  <!--===============================================================================================-->
+  <script src="/js/main.js"></script>
+  
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"
+></script>
+<style>
+  .error { color: rgb(253, 5, 5); }
+</style>
+<script>
+
+  $("#addAddressDetails").validate( { 
+rules: { 
+  firstName: { 
+        required: true, minlength: 2 ,lettersonly: true 
+},
+  lastName: { 
+        required: true, minlength: 2 ,lettersonly: true 
+},
+ phoneNumber: {
+  required: true,
+    minlength: 10 ,
+    maxlength:10,
+   digits: true,
+},
+  email: {
+     required: true, email: true, minlength: 5 
+},
+  type: {
+    required: true 
+  },
+  address:{
+    required: true ,minlength:3
+  },
+  city: {
+    required: true , minlength: 3
+  },
+  state:{
+    required: true , minlength:3
+  },
+  pincode: {
+    required: true , minlength: 5
+  }
+ 
+ },})
+
+</script>
+
+</body>
+
+</html>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+  function addressdiv(classId) {
+
+
+
+
+    document.getElementById('changer').innerHTML = document.getElementById(classId).innerHTML;
+
+
+
+
+  }
+
+
+  function ordersdiv(classId) {
+
+
+
+
+    document.getElementById('changer').innerHTML = document.getElementById(classId).innerHTML;
+
+
+
+
+  }
+
+
+
+
+
+
+  function myaccount(divId) {
+    document.getElementById('changer').innerHTML = document.getElementById(divId).innerHTML;
+  }
+  function changepassword(divId) {
+    document.getElementById('changer').innerHTML = document.getElementById(divId).innerHTML;
+  }
+ function changePassword(){
+  oldPassword=document.getElementById('oldPassword').value;
+  newPassword=document.getElementById('newPassword').value;
+  confirmPassword=document.getElementById('confirmPassword').value;
+  console.log(oldPassword);
+   $.ajax({
+    url: '/changePassword',
+    data: {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+      },
+
+    method: 'post',
+    success: (response) => {
+        
+       
+       
+          
+    },
+     });
+
+
+ }
+  
+  function cancelOrder(id,orderStatus){
+    console.log(orderStatus);
+   if(orderStatus=='cancelled'||orderStatus=='delivered'){
+    location.reload();
+   }
+     $.ajax({
+    url: '/cancelOrder',
+    data: {
+      orderId:id,
+      
+      
+
+    },
+
+    method: 'post',
+    success: (response) => {
+        console.log(response);
+       location.reload();
+        $("#orderStatus td:contains('c')").html("cancelled");
+          
+    }
+         });
+  }
+   function editAddresses(addId) {
+   console.log('its working');
+    $.ajax({
+      url: '/address_fetching',
+      data: {
+
+        address: addId,
+
+
+      },
+      method: 'post',
+      success: (res) => {
+       console.log(res.address[0].address);
+              
+
+        document.getElementById("address1").value = res.address[0].address;
+        document.getElementById("firstName1").value = res.address[0].firstName;
+        if (res.address[0].pincode)
+          document.getElementById("pincode1").value = res.address[0].pincode;
+        if (res.address[0].phoneNumber) {
+
+          document.getElementById("phoneNumber1").value = res.address[0].phoneNumber;
+        }
+        else {
+
+          document.getElementById("phoneNumber1").value = "null";
+        }
+        document.getElementById("lastName1").value = res.address[0].lastName;
+
+        if (res.address[0].alternatePhoneNumber) {
+          console.log('truee')
+          document.getElementById("alternatePhoneNumber1").value = res.address[0].alternatePhoneNumber;
+        }
+        else {
+          console.log("false")
+          document.getElementById("alternatePhoneNumber1").value = "null";
+        }
+        document.getElementById("city1").value = res.address[0].city;
+        document.getElementById("type1").value = res.address[0].type;
+        if (res.address[0].landMark) {
+          document.getElementById("landMark1").value = res.address[0].landMark;
+        }
+        else {
+          document.getElementById("landMark1").value = "null";
+        }
+        document.getElementById("state1").value = res.address[0].state;
+
+
+
+      },
+
+      error: (error) => {
+        alert('hierror')
+        console.log(error)
+      },
+    })
+  }
+
+  $("#form1").submit((e) => {
+    e.preventDefault();
+    
+   
+   
+      $.ajax({
+        url: '/editAddress',
+        data: $('#form1').serialize(),
+        method: 'post',
+        success: (res) => {
+          
+         location.reload();
+        }
+      });
+      });
+
+        $("#addAddress").submit((e) => {
+    e.preventDefault();
+    
+   
+   
+      $.ajax({
+        url: '/newAddress',
+        data: $('#form1').serialize(),
+        method: 'post',
+        success: (res) => {
+          location.reload();
+        }
+      });
+      });
+  
+</script>
+
+  
+
+
+
+
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
+
+<!-- Main JS -->
+<script src="assets/js/main.js"></script>
+</body>
+
+</html>

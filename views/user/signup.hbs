@@ -1,0 +1,113 @@
+  <!-- ...:::: Start Breadcrumb Section:::... -->
+    <div class="breadcrumb-section breadcrumb-bg-color--golden">
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="breadcrumb-title">Signup</h3>
+                        <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                            <nav aria-label="breadcrumb">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    {{!-- <li><a href="shop-grid-sidebar-left.html">Shop</a></li> --}}
+                                    <li class="active" aria-current="page">Signup</li>
+                                </ul>signupForm
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ...:::: End Breadcrumb Section:::... --> <!--register area start-->
+    <div class="col-lg-12 pb-5" style=" margin-left: 365px; ">
+                <div class="col-lg-6 col-md-6 pb-5" style="">
+                    <div class="account_form register "  data-aos="fade-up" data-aos-delay="200">
+                        <h3 style="text-align: center;">Register</h3>
+                        <form id="signupForm" method="post" action="/signup">
+                          <div class="default-form-box">
+                                <label>First Name <span>*</span></label>
+                                <input type="text" id="first_name" name="first_name" >
+                            </div>  
+                            <div class="default-form-box">
+                                <label>Last Name<span>*</span></label>
+                                <input type="text" id="last_name" name="last_name">
+                            </div>  <div class="default-form-box">
+                                <label>Phone Number <span>*</span></label>
+                                <input type="text" id="phone_number" name="phone_number">
+                            </div>
+                            <div class="default-form-box">
+                                <label>Email address <span>*</span></label>
+                                <input type="text" id="email" name="email">
+                            </div>
+                            <div class="default-form-box">
+                                <label>Password <span>*</span></label>
+                                <input type="password" id="password" name="password">
+                            </div>
+                             <div class="default-form-box">
+                                <label>Confirm Password <span>*</span></label>
+                                <input type="password" id="confirm_password" name="confirm_password">
+                            </div>
+                            <div class="login_submit">
+                                <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+             
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"
+></script>
+<style>
+  .error { color: rgb(253, 5, 5); }
+</style>
+<script>
+
+  $("#signupForm").validate( { 
+rules: { 
+  first_name: { 
+        required: true, minlength: 2 ,lettersonly: true 
+},
+  last_name: { 
+        required: true, minlength: 2 
+},
+ phone_number: {
+  required: true,
+    minlength: 10 ,
+    maxlength:10,
+   digits: true,
+},
+  email: {
+     required: true, email: true, minlength: 5 
+},
+ 
+  password: {
+     required: true, minlength: 5
+},
+  confirm_password: {
+     required: true, 
+     equalTo: "#password" 
+} },
+      messages: {
+  password: {
+     required: "Password is required", minlength: "Password should ontain atleast 5 characters" 
+},
+      confirm_password: { equalTo: "Enter the same password " }, } })
+
+</script>
+    </script>
+       <!--register area end-->
+                  <script src="assets/js/vendor/vendor.min.js"></script>
+                <script src="assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main JS -->
+                <script src="assets/js/main.js"></script>
+</body>
+
+
+</html>

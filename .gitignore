@@ -1,0 +1,48 @@
+# Ignore files related to API keys
+*.env
+# /data.json
+
+
+# Ignoring images 
+/public/productUploads/
+/public/images/bannerImages/
+
+
+# Ignore files related to installed npm packages
+/node_modules
+
+# # Ignore files related to IDE and editors
+# /.idea
+# .project
+# .classpath
+# .c9/
+# *.launch
+# .settings/
+# *.sublime-workspace
+
+# #Ignore files related to IDE - VSCode
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+# #Ignore files related  misc
+# /.sass-cache
+# /connect.lock
+# /coverage
+# /libpeerconnection.log
+# npm-debug.log
+# yarn-error.log
+# testem.log
+# /typings
+
+# #Ignore files related  System files
+# .DS_Store
+# Thumbs.db
+
+# #Ignore files related compiled outputs
+# /dist
+# /tmp
+# /out-tsc
+

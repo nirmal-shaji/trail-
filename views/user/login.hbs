@@ -1,0 +1,94 @@
+
+
+  <!-- ...:::: Start Breadcrumb Section:::... -->
+    <div class="breadcrumb-section breadcrumb-bg-color--golden">
+        <div class="breadcrumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="breadcrumb-title">Login</h3>
+                        <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                            <nav aria-label="breadcrumb">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    {{!-- <li><a href="shop-grid-sidebar-left.html">Shop</a></li> --}}
+                                    <li class="active" aria-current="page">Login</li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ...:::: End Breadcrumb Section:::... -->
+    <!-- ...:::: Start Customer Login Section :::... -->
+    <div class="customer-login">
+        <div class="container ">
+            <div class="row justify-content-center">
+                <!--login area start-->
+                <div class="col-lg-6 col-md-6 ">
+                    <div class="account_form" data-aos="fade-up" data-aos-delay="0">
+                        <h3>login</h3>
+                          {{#if userEmail}}
+                        <p style="color: red; ">Invalid username</p>
+                        {{else if userPassword}}
+                        <p style="color: red;">Invalid  password</p>
+                        {{else if userBlock}}
+                        <p style="color: red;">Sorry the user is blocked try contacting the customer care</p>
+                        {{/if}}
+                        <form action="/login" method="POST" id="userLogin">
+                            <div class="default-form-box">
+                                <label>Username or email <span>*</span></label>
+                                <input type="text" name="email">
+                            </div>
+                            <div class="default-form-box">
+                                <label>Passwords <span>*</span></label>
+                                <input type="password" name="password">
+                            </div>
+                            <div class="login_submit">
+                                <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
+                               
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--login area start-->
+
+               
+            </div>
+        </div>
+    </div> <!-- ...:::: End Customer Login Section :::... -->
+
+    <script src="assets/js/vendor/vendor.min.js"></script>
+    <script src="assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"
+></script>
+<style>
+  .error { color: rgb(253, 5, 5); }
+</style>
+<script>
+
+  $("#userLogin").validate( { 
+rules: { 
+
+  email: {
+     required: true, email: true, minlength: 5 
+},
+password: {
+    required: true , minlength: 5
+  }
+ 
+ },})
+
+</script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Audiogram</title>
+{{!-- ------------------------------------------user side link----------------------------------------------------------------------------------------------------------------------------------------------- --}}
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="/assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/plugins.min.css">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+  
+  </head> 
+  <body>
+    {{#if userheader}}
+    {{>user-header}}
+    {{else if guestheader}}
+    {{>guest-header}}
+    {{/if}}
+    {{{body}}}
+  </body>
+</html> 
